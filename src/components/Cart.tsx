@@ -1,7 +1,13 @@
 import { items } from '../data';
 import CartItem from './CartItem';
+import { initializeCart } from '../slices/cartSlice';
+import { useAppDispatch } from '../hooks/hooks';
 
 export default function Cart() {
+  const dispatch = useAppDispatch();
+
+  dispatch(initializeCart(items.length));
+
   return (
     <section className='cart'>
       <header>

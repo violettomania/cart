@@ -1,4 +1,6 @@
 import { FaAngleUp, FaAngleDown } from 'react-icons/fa';
+import { useAppDispatch } from '../hooks/hooks';
+import { addToCart, removeFromCart } from '../slices/cartSlice';
 
 interface CartItemProps {
   title: string;
@@ -8,6 +10,8 @@ interface CartItemProps {
 }
 
 export default function CartItem({ title, price, img, amount }: CartItemProps) {
+  const dispatch = useAppDispatch();
+
   return (
     <article className='cart-item'>
       <img src={img} alt={title} />
@@ -17,11 +21,14 @@ export default function CartItem({ title, price, img, amount }: CartItemProps) {
         <button className='remove-btn'>remove</button>
       </div>
       <div>
-        <button className='amount-btn'>
+        <button className='amount-btn' onClick={() => dispatch(addToCart())}>
           <FaAngleUp className='amount-icon' />
         </button>
         <span className='amount'>{amount}</span>
-        <button className='amount-btn'>
+        <button
+          className='amount-btn'
+          onClick={() => dispatch(removeFromCart())}
+        >
           <FaAngleDown className='amount-icon' />
         </button>
       </div>
