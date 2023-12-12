@@ -1,19 +1,10 @@
-import { FaAngleUp, FaAngleDown, FaShoppingCart } from 'react-icons/fa';
+import { FaAngleUp, FaAngleDown } from 'react-icons/fa';
+import Navbar from './Navbar';
 
 export default function App() {
   return (
     <main>
-      <nav>
-        <div className='nav-center'>
-          <h4>cart</h4>
-          <div className='nav-container'>
-            <FaShoppingCart className='cart-icon' />
-            <div className='amount-container'>
-              <p className='total-amount'>4</p>
-            </div>
-          </div>
-        </div>
-      </nav>
+      <Navbar />
       <section className='cart'>
         <header>
           <h2>your bag</h2>
