@@ -17,6 +17,7 @@ export default function App() {
       <section className='cart'>
         <header>
           <h2>your bag</h2>
+          {/* <h4 className='empty-cart'>is currently empty</h4> */}
         </header>
         <div>
           <article className='cart-item'>
