@@ -1,19 +1,26 @@
 import { FaAngleUp, FaAngleDown } from 'react-icons/fa';
 
-export default function CartItem() {
+interface CartItemProps {
+  title: string;
+  price: number;
+  img: string;
+  amount: number;
+}
+
+export default function CartItem({ title, price, img, amount }: CartItemProps) {
   return (
     <article className='cart-item'>
-      <img src='./images/phone-1.png' alt='Samsung Galaxy S8' />
+      <img src={img} alt={title} />
       <div>
-        <h5>Samsung Galaxy S8</h5>
-        <span className='item-price'>$399.99</span>
+        <h5>{title}</h5>
+        <span className='item-price'>{`$${price}`}</span>
         <button className='remove-btn'>remove</button>
       </div>
       <div>
         <button className='amount-btn'>
           <FaAngleUp className='amount-icon' />
         </button>
-        <span className='amount'>1</span>
+        <span className='amount'>{amount}</span>
         <button className='amount-btn'>
           <FaAngleDown className='amount-icon' />
         </button>
