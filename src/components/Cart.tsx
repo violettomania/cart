@@ -1,10 +1,11 @@
 import { items } from '../data';
 import CartItem from './CartItem';
 import { initializeCart } from '../slices/cartSlice';
-import { useAppDispatch } from '../hooks/hooks';
+import { useAppDispatch, useAppSelector } from '../hooks/hooks';
 
 export default function Cart() {
   const dispatch = useAppDispatch();
+  //   const itemAmount = useAppSelector((state) => state.cart.amount);
 
   dispatch(initializeCart(items.length));
 
@@ -12,7 +13,7 @@ export default function Cart() {
     <section className='cart'>
       <header>
         <h2>your bag</h2>
-        {/* <h4 className='empty-cart'>is currently empty</h4> */}
+        {/* {!!itemAmount || <h4 className='empty-cart'>is currently empty</h4>} */}
       </header>
       <div>
         {items.map((item) => (

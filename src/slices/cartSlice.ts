@@ -14,13 +14,13 @@ export const cartSlice = createSlice({
   initialState,
   reducers: {
     initializeCart: (state, action) => {
-      state.amount = action.payload;
+      state.amount = action.payload > 0 ? action.payload : 0;
     },
     addToCart: (state) => {
       state.amount++;
     },
     removeFromCart: (state) => {
-      state.amount--;
+      if (state.amount > 0) state.amount--;
     },
   },
 });
