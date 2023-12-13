@@ -20,7 +20,7 @@ export const cartSlice = createSlice({
       state.amount++;
     },
     removeFromCart: (state) => {
-      if (state.amount > 0) state.amount--;
+      state.amount--;
     },
   },
 });
