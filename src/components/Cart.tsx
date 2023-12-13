@@ -13,6 +13,11 @@ export default function Cart() {
     dispatch(clearCart());
   };
 
+  const handleRemoveLastItem = (id: number) => {
+    const newItems = cartItems.filter((item) => item.id !== id);
+    setCartItems(newItems);
+  };
+
   dispatch(initializeCart(cartItems.length));
 
   return (
@@ -25,7 +30,11 @@ export default function Cart() {
       </header>
       <div>
         {cartItems.map((item) => (
-          <CartItem key={item.id} {...item} />
+          <CartItem
+            key={item.id}
+            onRemoveLastItem={handleRemoveLastItem}
+            {...item}
+          />
         ))}
       </div>
       {cartItems.length > 0 ? (
