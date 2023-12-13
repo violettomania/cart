@@ -29,7 +29,6 @@ export default function CartItem({
   };
 
   const handleRemoveItem = (id: number) => {
-    console.log(id, amount);
     if (amount > 0) {
       setAmount(amount - 1);
       dispatch(removeFromCart());
