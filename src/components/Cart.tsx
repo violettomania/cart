@@ -4,6 +4,7 @@ import { initializeCart, clearCart } from '../slices/cartSlice';
 import { useAppDispatch } from '../hooks/hooks';
 import { useState } from 'react';
 
+// TODO use state from cartSlice
 export default function Cart() {
   const [cartItems, setCartItems] = useState(items);
   const dispatch = useAppDispatch();
@@ -18,7 +19,7 @@ export default function Cart() {
     setCartItems(newItems);
   };
 
-  dispatch(initializeCart(cartItems.length));
+  dispatch(initializeCart(cartItems));
 
   return (
     <section className='cart'>
@@ -33,7 +34,7 @@ export default function Cart() {
           <CartItem
             key={item.id}
             onRemoveLastItem={handleRemoveLastItem}
-            {...item}
+            item={item}
           />
         ))}
       </div>

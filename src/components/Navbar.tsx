@@ -2,7 +2,7 @@ import { FaShoppingCart } from 'react-icons/fa';
 import { useAppSelector } from '../hooks/hooks';
 
 export default function Navbar() {
-  const itemAmount = useAppSelector((state) => state.cart.amount);
+  const itemAmount = useAppSelector((state) => state.cart.items.length);
 
   return (
     <nav>

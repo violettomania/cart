@@ -4,34 +4,26 @@ import { addToCart, removeFromCart } from '../slices/cartSlice';
 import { useState } from 'react';
 
 interface CartItemProps {
-  id: number;
-  title: string;
-  price: number;
-  img: string;
-  amount: number;
+  item: Item;
   onRemoveLastItem: (id: number) => void;
 }
 
-export default function CartItem({
-  id,
-  title,
-  price,
-  img,
-  amount: amountProp,
-  onRemoveLastItem,
-}: CartItemProps) {
+// TODO use state from cartSlice
+export default function CartItem({ item, onRemoveLastItem }: CartItemProps) {
+  const { id, img, title, price, amount: amountProp } = item;
+
   const [amount, setAmount] = useState(amountProp);
   const dispatch = useAppDispatch();
 
-  const handleAddItem = () => {
+  const handleAddItem = (id: number) => {
     setAmount(amount + 1);
-    dispatch(addToCart());
+    dispatch(addToCart(id));
   };
 
   const handleRemoveItem = (id: number) => {
     if (amount > 0) {
       setAmount(amount - 1);
-      dispatch(removeFromCart());
+      dispatch(removeFromCart(id));
     }
     if (amount === 1) {
       onRemoveLastItem(id);
@@ -47,7 +39,7 @@ export default function CartItem({
         <button className='remove-btn'>remove</button>
       </div>
       <div>
-        <button className='amount-btn' onClick={handleAddItem}>
+        <button className='amount-btn' onClick={() => handleAddItem(id)}>
           <FaAngleUp className='amount-icon' />
         </button>
         <span className='amount'>{amount}</span>
