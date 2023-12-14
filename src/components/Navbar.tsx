@@ -2,8 +2,9 @@ import { FaShoppingCart } from 'react-icons/fa';
 import { useAppSelector } from '../hooks/hooks';
 
 export default function Navbar() {
-  // TODO collect the sum of item amounts
-  const amount = useAppSelector((state) => state.cart.items.length);
+  const amount = useAppSelector((state) =>
+    state.cart.items.reduce((sum, item) => sum + item.amount, 0)
+  );
 
   return (
     <nav>
