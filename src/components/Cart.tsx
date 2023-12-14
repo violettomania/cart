@@ -18,6 +18,9 @@ export default function Cart() {
     dispatch(clearCart());
   };
 
+  const calculateTotal = () =>
+    cart.reduce((sum, item) => sum + item.amount * item.price, 0);
+
   return (
     <section className='cart'>
       <header>
@@ -36,7 +39,7 @@ export default function Cart() {
           <hr />
           <div>
             <h5 className='cart-total'>
-              total <span>{`$${'placeholder'}`}</span>
+              total <span>{`$${calculateTotal()}`}</span>
             </h5>
           </div>
           <button className='btn btn-hipster' onClick={handleClearCart}>
