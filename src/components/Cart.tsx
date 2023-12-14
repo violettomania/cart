@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
 import { items } from '../data';
 import CartItem from './CartItem';
-import { initializeCart, clearCart } from '../slices/cartSlice';
+import { initializeCart } from '../slices/cartSlice';
 import { useAppDispatch, useAppSelector } from '../hooks/hooks';
+import Footer from './Footer';
 
-// TODO move footer to its own component
 export default function Cart() {
   const dispatch = useAppDispatch();
 
@@ -13,13 +13,6 @@ export default function Cart() {
   }, [dispatch]);
 
   const cart = useAppSelector((state) => state.cart.items);
-
-  const handleClearCart = () => {
-    dispatch(clearCart());
-  };
-
-  const calculateTotal = () =>
-    cart.reduce((sum, item) => sum + item.amount * item.price, 0);
 
   return (
     <section className='cart'>
@@ -34,19 +27,7 @@ export default function Cart() {
           <CartItem key={item.id} item={item} />
         ))}
       </div>
-      {cart.length > 0 ? (
-        <footer>
-          <hr />
-          <div>
-            <h5 className='cart-total'>
-              total <span>{`$${calculateTotal()}`}</span>
-            </h5>
-          </div>
-          <button className='btn btn-hipster' onClick={handleClearCart}>
-            clear cart
-          </button>
-        </footer>
-      ) : null}
+      <Footer />
     </section>
   );
 }
