@@ -1,36 +1,36 @@
+import { useEffect } from 'react';
 import { items } from '../data';
 import CartItem from './CartItem';
-import { initializeCart, clearCart } from '../slices/cartSlice';
-import { useAppDispatch } from '../hooks/hooks';
-import { useState } from 'react';
+import { initializeCart, clearCart, removeFromCart } from '../slices/cartSlice';
+import { useAppDispatch, useAppSelector } from '../hooks/hooks';
 
-// TODO use state from cartSlice
 export default function Cart() {
-  const [cartItems, setCartItems] = useState(items);
   const dispatch = useAppDispatch();
 
+  useEffect(() => {
+    dispatch(initializeCart(items));
+  }, [dispatch]);
+
+  const cart = useAppSelector((state) => state.cart.items);
+
   const handleClearCart = () => {
-    setCartItems([]);
     dispatch(clearCart());
   };
 
   const handleRemoveLastItem = (id: number) => {
-    const newItems = cartItems.filter((item) => item.id !== id);
-    setCartItems(newItems);
+    dispatch(removeFromCart(id));
   };
-
-  dispatch(initializeCart(cartItems));
 
   return (
     <section className='cart'>
       <header>
         <h2>your bag</h2>
-        {cartItems.length === 0 ? (
+        {cart.length === 0 ? (
           <h4 className='empty-cart'>is currently empty</h4>
         ) : null}
       </header>
       <div>
-        {cartItems.map((item) => (
+        {cart.map((item) => (
           <CartItem
             key={item.id}
             onRemoveLastItem={handleRemoveLastItem}
@@ -38,7 +38,7 @@ export default function Cart() {
           />
         ))}
       </div>
-      {cartItems.length > 0 ? (
+      {cart.length > 0 ? (
         <footer>
           <hr />
           <div>

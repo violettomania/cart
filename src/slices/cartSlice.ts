@@ -20,25 +20,16 @@ export const cartSlice = createSlice({
       const id = action.payload;
       const item = state.items.find((item) => item.id === id);
       if (item) {
-        const updatedItem = { ...item, amount: item.amount + 1 };
-        state.items = state.items.map((item) =>
-          item.id !== updatedItem.id ? item : updatedItem
-        );
+        item.amount += 1;
       }
     },
     removeFromCart: (state, action) => {
       const id = action.payload;
       const item = state.items.find((item) => item.id === id);
-      if (item) {
-        if (item.amount > 1) {
-          const updatedItem = { ...item, amount: item.amount - 1 };
-          state.items = state.items.map((item) =>
-            item.id !== updatedItem.id ? item : updatedItem
-          );
-        } else {
-          // remove last item
-          state.items = state.items.filter((item) => item.id !== id);
-        }
+      if (item && item.amount > 1) {
+        item.amount -= 1;
+      } else if (item && item.amount === 1) {
+        state.items = state.items.filter((item) => item.id !== id);
       }
     },
     clearCart: (state) => {
