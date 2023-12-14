@@ -1,7 +1,7 @@
 export const items = [
   {
     id: 1,
-    title: 'Samsung Galaxy S7',
+    title: 'Samsung Galaxy S8',
     price: 599.99,
     img: 'https://www.course-api.com/images/cart/phone-1.png',
     amount: 1,
