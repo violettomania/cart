@@ -4,10 +4,9 @@ import { addToCart, removeFromCart } from '../slices/cartSlice';
 
 interface CartItemProps {
   item: Item;
-  onRemoveLastItem: (id: number) => void;
 }
 
-export default function CartItem({ item, onRemoveLastItem }: CartItemProps) {
+export default function CartItem({ item }: CartItemProps) {
   const { id, img, title, price, amount: amountProp } = item;
 
   const dispatch = useAppDispatch();

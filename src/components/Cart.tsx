@@ -17,10 +17,6 @@ export default function Cart() {
     dispatch(clearCart());
   };
 
-  const handleRemoveLastItem = (id: number) => {
-    dispatch(removeFromCart(id));
-  };
-
   return (
     <section className='cart'>
       <header>
@@ -31,11 +27,7 @@ export default function Cart() {
       </header>
       <div>
         {cart.map((item) => (
-          <CartItem
-            key={item.id}
-            onRemoveLastItem={handleRemoveLastItem}
-            item={item}
-          />
+          <CartItem key={item.id} item={item} />
         ))}
       </div>
       {cart.length > 0 ? (
