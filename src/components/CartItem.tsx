@@ -9,6 +9,8 @@ interface CartItemProps {
 export default function CartItem({ item }: CartItemProps) {
   const { id, img, title, price, amount: amountProp } = item;
 
+  // TODO: add spinner
+
   const dispatch = useAppDispatch();
 
   const handleAddItem = (id: number) => {
