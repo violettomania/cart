@@ -1,9 +1,10 @@
 import { useEffect } from 'react';
 import { items } from '../data';
 import CartItem from './CartItem';
-import { initializeCart, clearCart, removeFromCart } from '../slices/cartSlice';
+import { initializeCart, clearCart } from '../slices/cartSlice';
 import { useAppDispatch, useAppSelector } from '../hooks/hooks';
 
+// TODO move footer to its own component
 export default function Cart() {
   const dispatch = useAppDispatch();
 
