@@ -6,8 +6,10 @@ export default function Navbar() {
     state.cart.items.reduce((sum, item) => sum + item.amount, 0)
   );
 
+  const isLoading = useAppSelector((state) => state.cart.isLoading);
+
   return (
-    <nav>
+    <nav className={`${isLoading && 'hidden'}`}>
       <div className='nav-center'>
         <h4>cart</h4>
         <div className='nav-container'>

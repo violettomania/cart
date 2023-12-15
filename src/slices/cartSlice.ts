@@ -3,10 +3,14 @@ import type { RootState } from '../store/store';
 
 interface CartState {
   items: Item[];
+  isLoading: boolean;
+  loadedImageCount: number;
 }
 
 const initialState: CartState = {
   items: [],
+  isLoading: true,
+  loadedImageCount: 0,
 };
 
 export const cartSlice = createSlice({
@@ -15,6 +19,13 @@ export const cartSlice = createSlice({
   reducers: {
     initializeCart: (state, action) => {
       state.items = action.payload;
+    },
+    stopItemImageLoading: (state) => {
+      console.log('stopItemImageLoading');
+      state.loadedImageCount += 1;
+      if (state.loadedImageCount === state.items.length) {
+        state.isLoading = false;
+      }
     },
     addToCart: (state, action) => {
       const id = action.payload;
@@ -38,8 +49,13 @@ export const cartSlice = createSlice({
   },
 });
 
-export const { initializeCart, addToCart, removeFromCart, clearCart } =
-  cartSlice.actions;
+export const {
+  initializeCart,
+  stopItemImageLoading,
+  addToCart,
+  removeFromCart,
+  clearCart,
+} = cartSlice.actions;
 
 export const selectCart = (state: RootState) => state.cart.items;
 

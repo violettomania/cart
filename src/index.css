@@ -221,6 +221,10 @@ ul {
   text-transform: capitalize;
 }
 
+.hidden {
+  display: none;
+}
+
 @keyframes spinner {
   to {
     transform: rotate(360deg);

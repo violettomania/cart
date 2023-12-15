@@ -1,6 +1,10 @@
 import { FaAngleUp, FaAngleDown } from 'react-icons/fa';
 import { useAppDispatch } from '../hooks/hooks';
-import { addToCart, removeFromCart } from '../slices/cartSlice';
+import {
+  stopItemImageLoading,
+  addToCart,
+  removeFromCart,
+} from '../slices/cartSlice';
 
 interface CartItemProps {
   item: Item;
@@ -8,8 +12,6 @@ interface CartItemProps {
 
 export default function CartItem({ item }: CartItemProps) {
   const { id, img, title, price, amount: amountProp } = item;
-
-  // TODO: add spinner
 
   const dispatch = useAppDispatch();
 
@@ -21,9 +23,13 @@ export default function CartItem({ item }: CartItemProps) {
     dispatch(removeFromCart(id));
   };
 
+  const handleImageLoad = () => {
+    dispatch(stopItemImageLoading());
+  };
+
   return (
     <article className='cart-item'>
-      <img src={img} alt={title} />
+      <img src={img} alt={title} onLoad={handleImageLoad} />
       <div>
         <h5>{title}</h5>
         <span className='item-price'>{`$${price}`}</span>

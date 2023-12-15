@@ -8,6 +8,8 @@ import Footer from './Footer';
 export default function Cart() {
   const dispatch = useAppDispatch();
 
+  const isLoading = useAppSelector((state) => state.cart.isLoading);
+
   useEffect(() => {
     dispatch(initializeCart(items));
   }, [dispatch]);
@@ -15,7 +17,7 @@ export default function Cart() {
   const cart = useAppSelector((state) => state.cart.items);
 
   return (
-    <section className='cart'>
+    <section className={`cart ${isLoading && 'hidden'}`}>
       <header>
         <h2>your bag</h2>
         {cart.length === 0 ? (
