@@ -21,7 +21,6 @@ export const cartSlice = createSlice({
       state.items = action.payload;
     },
     stopItemImageLoading: (state) => {
-      console.log('stopItemImageLoading');
       state.loadedImageCount += 1;
       if (state.loadedImageCount === state.items.length) {
         state.isLoading = false;
