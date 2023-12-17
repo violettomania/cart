@@ -5,6 +5,8 @@ import { initializeCart } from '../slices/cartSlice';
 import { useAppDispatch, useAppSelector } from '../hooks/hooks';
 import Footer from './Footer';
 
+// TODO: lift up footer
+
 interface CartProps {
   isLoading: boolean;
 }
