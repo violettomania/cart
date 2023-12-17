@@ -1,12 +1,14 @@
 import { FaShoppingCart } from 'react-icons/fa';
 import { useAppSelector } from '../hooks/hooks';
 
-export default function Navbar() {
+interface NavbarProps {
+  isLoading: boolean;
+}
+
+export default function Navbar({ isLoading }: NavbarProps) {
   const amount = useAppSelector((state) =>
     state.cart.items.reduce((sum, item) => sum + item.amount, 0)
   );
-
-  const isLoading = useAppSelector((state) => state.cart.isLoading);
 
   return (
     <nav className={`${isLoading && 'hidden'}`}>

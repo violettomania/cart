@@ -5,10 +5,12 @@ import { initializeCart } from '../slices/cartSlice';
 import { useAppDispatch, useAppSelector } from '../hooks/hooks';
 import Footer from './Footer';
 
-export default function Cart() {
-  const dispatch = useAppDispatch();
+interface CartProps {
+  isLoading: boolean;
+}
 
-  const isLoading = useAppSelector((state) => state.cart.isLoading);
+export default function Cart({ isLoading }: CartProps) {
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(initializeCart(items));
